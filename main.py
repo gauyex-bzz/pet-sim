@@ -41,7 +41,8 @@ while keep:
         interact = input(f'\nWould you like to interact with {name} now? (yes/no)\n')
         if interact == 'yes':
             break
-    interactionType = input(f'What would you like to do with {name}? (feed, play, swim, sleep, release, sell, kill)\n')
+    interactionType = input(f'What would you like to do with {name}? (feed, play, swim, sleep, release, sell, kill, '
+                            f'slap)\n')
     if interactionType == 'feed':
         print(f'{name} was fed.')
         friendship_up()
@@ -78,3 +79,9 @@ while keep:
     elif interactionType == 'kill':
         print(f'{name} was killed. I hope you feel bad.')
         exit()
+    elif interactionType == 'slap':
+        print(f'{name} was slapped. You are a horrible person.')
+        friendshipLevel -= 0.3
+        if friendshipLevel < 0:
+            print(f'{name} ran away because it got scared of you. You are a monster.')
+            exit()
