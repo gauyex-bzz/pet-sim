@@ -66,7 +66,7 @@ while keep:
             feed -= 0.33
 
     elif interactionType == 'swim':
-        drown = random.randint(1, 2)
+        drown = random.randint(1, 1000)
         if feed < 1:
             hungry()
         else:
