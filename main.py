@@ -10,7 +10,7 @@ while animal not in ['cat', 'dog', 'rabbit', 'hamster']:
 name = input(f'Please enter a name for your {animal}\n')
 keep = input(f'Congrats! You now own a {animal} named {name}! Would you like to keep it? (yes/no)\n')
 
-friendshipLevel = 0
+friendshipLevel = 9.9
 
 if keep == 'yes':
     print(f'Great! You can now interact with {name}! Your friendship level is {friendshipLevel}.')
@@ -19,6 +19,10 @@ else:
     exit()
 
 while keep:
+    if friendshipLevel in [2, 3, 4, 5, 6, 7, 8, 9, 10]:
+        print(f'Congrats! Your friendship level is now {friendshipLevel}.')
+    if friendshipLevel == 10:
+        print(f'You have reached the maximum friendship level with {name}!')
     interact = input(f'Would you like to interact with {name}? (yes/no)\n')
     while interact == 'no':
         time.sleep(5)
@@ -28,16 +32,20 @@ while keep:
     interactionType = input(f'What would you like to do with {name}? (feed, play, swim, sleep, release, sell, kill)\n')
     if interactionType == 'feed':
         print(f'{name} was fed.')
-        friendshipLevel += 0.2
+        if friendshipLevel < 10:
+            friendshipLevel += 0.2
     elif interactionType == 'play':
         print(f'{name} played with you.')
-        friendshipLevel += 0.1
+        if friendshipLevel < 10:
+            friendshipLevel += 0.1
     elif interactionType == 'swim':
         print(f'{name} swam.')
-        friendshipLevel += 0.1
+        if friendshipLevel < 10:
+            friendshipLevel += 0.1
     elif interactionType == 'sleep':
         print(f'{name} slept.')
-        friendshipLevel += 0.1
+        if friendshipLevel < 10:
+            friendshipLevel += 0.1
     elif interactionType == 'release':
         print(f'{name} was released. You can choose another pet by restarting the game.')
         exit()
