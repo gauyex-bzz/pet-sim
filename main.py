@@ -1,4 +1,5 @@
 import time
+import random
 
 animal = input('Please choose one of the following pets: cat, dog, rabbit or hamster.\n')
 
@@ -10,8 +11,8 @@ while animal not in ['cat', 'dog', 'rabbit', 'hamster']:
 name = input(f'Please enter a name for your {animal}\n')
 keep = input(f'Congrats! You now own a {animal} named {name}! Would you like to keep it? (yes/no)\n')
 
-friendshipLevel = 9.9
-feed = 0
+friendshipLevel = 0
+feed = 2
 
 if keep == 'yes':
     print(f'Great! You can now interact with {name}! Your friendship level is {friendshipLevel}.')
@@ -43,6 +44,7 @@ while keep:
             break
     interactionType = input(f'What would you like to do with {name}? (feed, play, swim, sleep, release, sell, kill, '
                             f'slap)\n')
+
     if interactionType == 'feed':
         print(f'{name} was fed.')
         friendship_up()
@@ -54,34 +56,47 @@ while keep:
         if feed == 15:
             print(f'{name} is now dead. You killed it by overfeeding it. What a horrible death.')
             exit()
+
     elif interactionType == 'play':
         if feed < 1:
             hungry()
         else:
             print(f'{name} played with you.')
             friendship_up()
+            feed -= 0.33
+
     elif interactionType == 'swim':
+        drown = random.randint(1, 2)
         if feed < 1:
             hungry()
         else:
             print(f'{name} swam.')
+            if drown == 1:
+                print(f'{name} drowned. You are a terrible pet owner.')
+                exit()
             friendship_up()
+            feed -= 0.33
+
     elif interactionType == 'sleep':
         print(f'{name} slept.')
         friendship_up()
         feed = 2
+
     elif interactionType == 'release':
         print(f'{name} was released. You can choose another pet by restarting the game.')
         exit()
+
     elif interactionType == 'sell':
         print(f'{name} was sold for $3. Feel happy now?')
         exit()
+
     elif interactionType == 'kill':
         print(f'{name} was killed. I hope you feel bad.')
         exit()
+
     elif interactionType == 'slap':
         print(f'{name} was slapped. You are a horrible person.')
-        friendshipLevel -= 0.3
+        friendshipLevel -= 0.5
         if friendshipLevel < 0:
             print(f'{name} ran away because it got scared of you. You are a monster.')
             exit()
