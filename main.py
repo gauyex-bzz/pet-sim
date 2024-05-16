@@ -12,13 +12,16 @@ name = input(f'Please enter a name for your {animal}\n')
 keep = input(f'Congrats! You now own a {animal} named {name}! Would you like to keep it? (yes/no)\n')
 
 friendshipLevel = 0
-feed = 2
 
 if keep == 'yes':
     print(f'Great! You can now interact with {name}! Your friendship level is {friendshipLevel}.')
 else:
     print(f'{name} was released.')
     exit()
+
+pets = []
+
+feed = 2
 
 
 def hungry():
@@ -58,12 +61,17 @@ while keep:
             exit()
 
     elif interactionType == 'play':
+        breakNeck = random.randint(1, 1000)
         if feed < 1:
             hungry()
         else:
-            print(f'{name} played with you.')
-            friendship_up()
-            feed -= 0.33
+            if breakNeck == 1:
+                print(f'{name} broke its neck while playing. You are a terrible pet owner.')
+                exit()
+            else:
+                print(f'{name} played with you.')
+                friendship_up()
+                feed -= 0.5
 
     elif interactionType == 'swim':
         drown = random.randint(1, 1000)
@@ -75,12 +83,15 @@ while keep:
                 print(f'{name} drowned. You are a terrible pet owner.')
                 exit()
             friendship_up()
-            feed -= 0.33
+            feed = feed - 0.5
 
     elif interactionType == 'sleep':
-        print(f'{name} slept.')
-        friendship_up()
-        feed = 2
+        if feed < 3:
+            print(f'{name} is too hungry to sleep. You should feed it.')
+        else:
+            print(f'{name} slept.')
+            friendship_up()
+            feed = feed - 2
 
     elif interactionType == 'release':
         print(f'{name} was released. You can choose another pet by restarting the game.')
