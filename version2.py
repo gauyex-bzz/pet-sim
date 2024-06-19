@@ -20,18 +20,18 @@ class Pet:
     def hunger(self):
         self.feed -= 1
 
-    def feed(self):
+    def feed_pet(self):
         print(f'{self.name} was fed.')
         amount = int(input('How much food would you like to give it? (1-3)'))
         self.friendship_up()
-        self.feed += amount
+        self._feed += amount
         if self.feed >= 8:
             print(f'{self.name} is now fat. You should stop feeding it.')
         if self.feed >= 13:
             print(f'{self.name} is now obese. Please stop feeding that poor {self.animal}.')
         if self.feed >= 18:
             print(f'{self.name} is now dead. You killed it by overfeeding it. What a horrible death.')
-            exit()
+            goodbye()
 
     def play(self):
         break_neck = random.randint(1, 1000)
@@ -81,7 +81,7 @@ class Pet:
         self.hunger()
         if self.friendship < 0:
             print(f'{self.name} ran away because it got scared of you.')
-            exit()
+            goodbye()
         elif self.feed < 1:
             print(f'{self.name} died becaue it was too weak. You killed your pet. Shame on you.')
 
@@ -122,3 +122,33 @@ def select_pet(list):
         return None
 
 
+def goodbye():
+    print("\n##### Goodbye! #####")
+    exit()
+
+
+def pet_menu(pet):
+    print(pet)
+    print('\tOptions: \n\tFeed, Play, Swim, Sleep, Release, Hit')
+    choice = input('What would you like to do? \n')
+    if choice == 'feed':
+        pet.feed_pet()
+    elif choice == 'play':
+        pet.play()
+    elif choice == 'swim':
+        pet.swim()
+    elif choice == 'sleep':
+        pet.sleep()
+    elif choice == 'release':
+        pet.release()
+    elif choice == 'hit':
+        pet.hit()
+    else:
+        print('Invalid choice.')
+
+
+if __name__ == '__main__':
+    pets = [Pet("George", "Monkey")]
+    print("##### Welcome to pet simulator! #####\n")
+    while True:
+        pet_menu(pets[0])
