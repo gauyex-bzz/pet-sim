@@ -29,10 +29,10 @@ class Pet:
         self.friendship_up()
         self._feed += amount
         print(f'{self.name} was fed.')
-        if self.feed >= 8:
-            print(f'{self.name} is now fat. You should stop feeding it.')
+        if 8 <= self.feed <= 13:
+            print(f'{self.name} is now fat. You should stop feeding them.')
             self._health = 'Healthy'
-        if self.feed >= 13:
+        if 13 <= self.feed <= 18:
             print(f'{self.name} is now obese. Please stop feeding that poor {self.animal}.')
             self._health = 'Obese'
         if self.feed >= 18:
