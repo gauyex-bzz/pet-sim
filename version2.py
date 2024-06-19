@@ -3,6 +3,7 @@ import random
 
 class Pet:
     def __init__(self, name, animal):
+        self._health = 'Healthy'
         self._name = name
         self._animal = animal
         self._feed = 3
@@ -22,13 +23,18 @@ class Pet:
 
     def feed_pet(self):
         print(f'{self.name} was fed.')
-        amount = int(input('How much food would you like to give it? (1-3) \n'))
+        amount = int(input(f'How much food would you like to give {self.name}? (1-3) \n'))
+        while amount < 1 or amount > 3:
+            amount = int(input('Invalid amount. Please choose between 1 and 3. \n'))
         self.friendship_up()
         self._feed += amount
+        print(f'{self.name} was fed.')
         if self.feed >= 8:
             print(f'{self.name} is now fat. You should stop feeding it.')
+            self._health = 'Healthy'
         if self.feed >= 13:
             print(f'{self.name} is now obese. Please stop feeding that poor {self.animal}.')
+            self._health = 'Obese'
         if self.feed >= 18:
             print(f'{self.name} is now dead. You killed it by overfeeding it. What a horrible death.')
             goodbye()
@@ -108,11 +114,14 @@ class Pet:
     def friendship(self, value):
         self._friendship = value
 
-    def __str__(self):
+    def info(self):
         return f'\nName: {self.name}\n' \
                f'Animal: {self.animal}\n' \
-               f'Feed: {self.feed}\n' \
+               f'Feed: {self.feed} ({self._health})\n' \
                f'Friendship: {self.friendship}\n'
+
+    def __str__(self):
+        return f'\nCurrent pet: {self.name} the {self.animal} \n'
 
 
 def select_pet(list):
@@ -128,7 +137,7 @@ def goodbye():
 
 def pet_menu(pet):
     print(pet)
-    print('\tOptions: \n\tFeed, Play, Swim, Sleep, Release, Hit')
+    print('\tOptions: \n\tFeed, Play, Swim, Sleep, Release, Hit, Info \n')
     choice = input('What would you like to do? \n')
     if choice == 'feed':
         pet.feed_pet()
@@ -142,6 +151,8 @@ def pet_menu(pet):
         pet.release()
     elif choice == 'hit':
         pet.hit()
+    elif choice == 'info':
+        print(pet.info())
     else:
         print('Invalid choice.')
 
