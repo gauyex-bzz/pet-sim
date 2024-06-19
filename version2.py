@@ -22,7 +22,7 @@ class Pet:
 
     def feed_pet(self):
         print(f'{self.name} was fed.')
-        amount = int(input('How much food would you like to give it? (1-3)'))
+        amount = int(input('How much food would you like to give it? (1-3) \n'))
         self.friendship_up()
         self._feed += amount
         if self.feed >= 8:
@@ -110,7 +110,7 @@ class Pet:
         self._friendship = value
 
     def __str__(self):
-        return f'Name: {self.name}\n' \
+        return f'\nName: {self.name}\n' \
                f'Animal: {self.animal}\n' \
                f'Feed: {self.feed}\n' \
                f'Friendship: {self.friendship}\n'
@@ -123,7 +123,7 @@ def select_pet(list):
 
 
 def goodbye():
-    print("\n##### Goodbye! #####")
+    print('\n##### Goodbye! #####')
     exit()
 
 
@@ -148,7 +148,7 @@ def pet_menu(pet):
 
 
 if __name__ == '__main__':
-    pets = [Pet("George", "Monkey")]
-    print("##### Welcome to pet simulator! #####\n")
+    pets = [Pet('George', 'Monkey')]
+    print('##### Welcome to pet simulator! #####\n')
     while True:
         pet_menu(pets[0])
