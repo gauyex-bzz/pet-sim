@@ -34,17 +34,16 @@ class Pet:
             goodbye()
 
     def play(self):
-        break_neck = random.randint(1, 1000)
-        hit_by_car = random.randint(1, 1000)
+        randint = random.randint(1, 1000)
         if self.feed < 1:
             self.hungry()
         else:
-            if break_neck == 1:
+            if randint == 1:
                 print(f'{self.name} broke its neck while playing. What the hell were you doing?.')
-                exit()
-            elif hit_by_car == 1:
+                goodbye()
+            elif randint == 2:
                 print(f'{self.name} was hit by a car while playing. Better watch out next time.')
-                exit()
+                goodbye()
             else:
                 print(f'{self.name} played with you.')
                 self.friendship_up()
