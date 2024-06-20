@@ -22,9 +22,12 @@ class Pet:
         self.feed -= 1
 
     def feed_pet(self):
-        amount = int(input(f'How much food would you like to give {self.name}? (1-3) \n'))
-        while amount < 1 or amount > 3:
-            amount = int(input('Invalid amount. Please choose between 1 and 3. \n'))
+        try:
+            amount = int(input(f'How much food would you like to give {self.name}? (1-3) \n'))
+            while amount not in [1, 2, 3]:
+                amount = int(input('Invalid input. Please choose a number between 1 and 3. \n'))
+        except ValueError:
+            amount = int(input('Invalid input. Please choose a number between 1 and 3. \n'))
         self.friendship_up()
         self._feed += amount
         print(f'{self.name} was fed.')
