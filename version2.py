@@ -22,7 +22,6 @@ class Pet:
         self.feed -= 1
 
     def feed_pet(self):
-        print(f'{self.name} was fed.')
         amount = int(input(f'How much food would you like to give {self.name}? (1-3) \n'))
         while amount < 1 or amount > 3:
             amount = int(input('Invalid amount. Please choose between 1 and 3. \n'))
